@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Тренер" as Trainer
+actor "Управляющий" as Manager
+
+rectangle "Система учёта спортивного инвентаря" {
+    usecase "Регистрация" as UC_Reg
+    usecase "Вход в систему" as UC_LoginT
+    usecase "Вход в систему" as UC_LoginM
+
+    usecase "Главное меню (тренер)" as UC_MenuT
+    usecase "Главное меню (управляющий)" as UC_MenuM
+    usecase "Добавление тренера" as UC_AddTrainer
+
+    usecase "Фиксация поломки" as UC_Break
+    usecase "Просмотр инвентаря" as UC_View
+    usecase "Выдача оборудования" as UC_Give
+    usecase "Приём оборудования" as UC_Take
+
+    usecase "Добавление инвентаря" as UC_AddItem
+    usecase "Отправка на ремонт" as UC_Repair
+    usecase "Проверка инвентаря" as UC_Check
+    usecase "Списание инвентаря" as UC_WriteOff
+
+    usecase "Ввод данных поломки" as UC_BreakData
+    usecase "Выбор инвентаря по ID" as UC_SelectId
+}
+
+Trainer --> UC_Reg
+Trainer --> UC_LoginT
+Manager --> UC_LoginM
+
+UC_LoginT --> UC_MenuT
+UC_LoginM --> UC_MenuM
+UC_LoginM --> UC_AddTrainer
+
+UC_MenuT --> UC_Break
+UC_MenuT --> UC_View
+UC_MenuT --> UC_Give
+UC_MenuT --> UC_Take
+
+UC_MenuM --> UC_AddItem
+UC_MenuM --> UC_Repair
+UC_MenuM --> UC_Check
+UC_MenuM --> UC_WriteOff
+
+UC_Break ..> UC_BreakData : <<include>>
+UC_Repair ..> UC_SelectId : <<include>>
+@enduml
