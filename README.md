@@ -1,4 +1,4 @@
-# Gym Equipment Tracker
+# Accounting of sports equipment in the hall
 
 Учебный проект: система учёта спортивного инвентаря в зале.
 
